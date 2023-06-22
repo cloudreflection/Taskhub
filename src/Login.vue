@@ -1,16 +1,18 @@
 <template>
-    <n-space vertical>
-        <n-input type="text" placeholder="Token" style="width: 400px;" v-model:value="token" />
-        <n-space>
-            <n-button @click="login">登录</n-button>
-            <n-text type="error">{{ message }}</n-text>
+    <div style="margin: 40px;">
+        <n-space vertical>
+            <n-input type="text" placeholder="Token" style="width: 400px;" v-model:value="token" />
+            <n-space>
+                <n-button @click="login">登录</n-button>
+                <n-text type="error">{{ message }}</n-text>
+            </n-space>
         </n-space>
-    </n-space>
+    </div>
 </template>
 <script setup>
 import { NSpace, NInput, NButton, NText } from 'naive-ui'
 import { ref } from 'vue'
-import { api } from '../share'
+import { api, loginstate } from './share'
 const token = ref(localStorage.getItem("token"))
 const message = ref("")
 async function login() {
@@ -29,7 +31,7 @@ async function login() {
         const u = await res.json()
         localStorage.setItem("token", token.value)
         localStorage.setItem("username", u.name)
-        location.assign(location.origin + "/app")
+        loginstate.value = true
     }
     catch {
         message.value = "服务器错误"

@@ -19,8 +19,6 @@
                             <n-input type="textarea" placeholder="安全 理智 尊重" :autosize="{
                                     minRows: 2
                                 }" v-model:value="task" maxlength="500" show-count />
-                            <!-- <n-text>选择需要的道具</n-text>
-                                <n-select v-model:value="toy" multiple :options="toyopt" placeholder="不在列表内可不选" /> -->
                             <n-space>
                                 <n-checkbox v-model:checked="showprofile" label="公开昵称和uid" />
                                 <n-checkbox v-model:checked="isprivate" label="非公开任务" />
@@ -41,15 +39,12 @@
 <script setup>
 import { NSpace, NLayout, NLayoutHeader, NLayoutContent, NH2, NCard, NInput, useMessage, NText, NCheckbox, NButton, NDivider } from 'naive-ui';
 import { ref } from 'vue'
-import { getapi, postapi } from '../src/share.js'
+import { getapi, postapi } from '../share.js'
 import Tasks from './Tasks.vue'
 const username = ref(localStorage.getItem("username"))
 const task = ref("")
 const title = ref("")
 const message = useMessage()
-// const toy = ref([])
-// const toyopt = ref(toylist)
-
 const isprivate = ref(false)
 const showprofile = ref(true)
 const tasklist = ref([])
