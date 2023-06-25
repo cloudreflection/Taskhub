@@ -22,5 +22,5 @@
 import { NSpace, NLayout, NLayoutHeader, NLayoutContent, NH2, useMessage, NText, NButton} from 'naive-ui';
 import { ref } from 'vue'
 import { getapi, postapi } from '../src/share.js'
-import Tasks from './Tasks.vue'
+import Tasks from '../src/app/Tasks.vue'
 </script>../src/share.js
