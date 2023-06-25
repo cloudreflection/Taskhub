@@ -1,5 +1,6 @@
 import { ref } from "vue"
-export const api = "http://127.0.0.1:8000/"
+// export const api = "http://127.0.0.1:8000/"
+export const api = "https://tbapi.1451419.xyz/"
 export const loginstate = ref(false)
 export async function getapi(path) {
     try {
