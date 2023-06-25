@@ -9,7 +9,7 @@
 
 <script setup>
 import Single from './Single.vue'
-import { loginstate } from './share.js'
+import { loginstate } from '../src/share.js'
 import { NMessageProvider, NConfigProvider, zhCN, dateZhCN, useOsTheme, darkTheme, NGlobalStyle } from 'naive-ui'
 import { ref } from 'vue'
 const otheme = useOsTheme()
