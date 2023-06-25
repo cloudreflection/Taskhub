@@ -23,4 +23,4 @@ import { NSpace, NLayout, NLayoutHeader, NLayoutContent, NH2, useMessage, NText,
 import { ref } from 'vue'
 import { getapi, postapi } from '../share.js'
 import Tasks from './Tasks.vue'
-</script>
+</script>../src/share.js
