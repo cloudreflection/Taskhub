@@ -1,20 +1,14 @@
 <template>
     <NConfigProvider :locale="zhCN" :date-locale="dateZhCN" :theme="theme">
         <NGlobalStyle />
-        <div v-if="!loginstate">
-            <Login />
-        </div>
-        <div v-else>
             <NMessageProvider>
-                <App />
+                <Single />
             </NMessageProvider>
-        </div>
     </NConfigProvider>
 </template>
 
 <script setup>
-import Login from './Login.vue'
-import App from './app/Main.vue'
+import Single from './Single.vue'
 import { loginstate } from './share.js'
 import { NMessageProvider, NConfigProvider, zhCN, dateZhCN, useOsTheme, darkTheme, NGlobalStyle } from 'naive-ui'
 import { ref } from 'vue'

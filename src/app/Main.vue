@@ -3,7 +3,7 @@
         <n-space vertical>
             <n-layout-header bordered style="height: 64px; padding: 17px">
                 <n-space justify="space-between">
-                    <n-h2>云影的任务箱</n-h2>
+                    <n-h2>Taskhub</n-h2>
                     <n-space>
                         <n-text>欢迎 {{ username }} 主人</n-text>
                         <n-button text tag="a" type="primary" @click="logout">退出登录</n-button>
@@ -16,12 +16,12 @@
                             <n-text>标题</n-text>
                             <n-input type="text" placeholder="喵喵喵" v-model:value="title" maxlength="30" show-count />
                             <n-text>任务内容</n-text>
-                            <n-input type="textarea" placeholder="安全 理智 尊重" :autosize="{
-                                    minRows: 2
-                                }" v-model:value="task" maxlength="500" show-count />
+                            <n-input type="textarea" placeholder="新建任务" :autosize="{
+                                minRows: 2
+                            }" v-model:value="task" maxlength="500" show-count />
                             <n-space>
                                 <n-checkbox v-model:checked="showprofile" label="公开昵称和uid" />
-                                <n-checkbox v-model:checked="isprivate" label="非公开任务" />
+                                <n-checkbox v-model:checked="isprivate" disabled label="非公开任务" />
                             </n-space>
                             <n-button @click="submit">提交</n-button>
                         </n-space>

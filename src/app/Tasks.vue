@@ -9,7 +9,8 @@
                     </n-text></n-space>
             </div>
             <n-space>
-                <n-button text tag="a" type="primary" @click="comlist">{{ showcomment ? '关闭' : '打开' }}评论区({{  }})</n-button>
+                <n-button text tag="a" type="primary" @click="comlist">{{ showcomment ? '关闭' : '打开' }}评论区({{
+                    ccount }})</n-button>
             </n-space>
 
             <n-card>
@@ -62,10 +63,11 @@ const taskrecord = ref(false)
 const time = (new Date(p[3] * 1000)).toLocaleString()
 const name = p[4]
 const showcomment = ref(false)
-const er = ref(true)
+const r = ref(JSON.parse(p[8]))
+const er = ref(r.value.length == 0)
 const ec = ref(true)
-const r = ref([])
 const c = ref([])
+const ccount = ref(p[7])
 const message = useMessage()
 async function comlist() {
     if (showcomment.value == true) {
@@ -91,10 +93,7 @@ async function makecomment() {
         message.error("提交失败")
     }
     if (taskrecord.value) {
-        r.value = await getapi('getrecord?tid=' + p[0])
-        if (showrecord.value) {
-            showrecord.value = false
-        }
+        r.value.slice(0, 0, [, , newcomment.value, , localStorage.getItem("username"), , true])
     } else {
         c.value = await getapi('getcomment?tid=' + p[0])
         showcomment.value = false
