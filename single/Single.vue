@@ -27,7 +27,7 @@ import { ref } from 'vue'
 import { getapi } from '../src/share.js'
 import Tasks from '../src/app/Tasks.vue'
 if (localStorage.getItem("token") == null) { location.assign(location.origin) }
-const tid = (location.pathname).slice(8)
+const tid = (location.pathname).slice(11)
 const errr = ref(false)
 const url = location.origin
 const q = ref()
