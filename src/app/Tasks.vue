@@ -1,5 +1,5 @@
 <template>
-    <n-card :title="p[1]">
+    <n-card style="width:90vw;max-width: 1200px;" :title="p[1]">
         <n-space vertical>
             <n-text>{{ p[2] }}</n-text>
             <div>

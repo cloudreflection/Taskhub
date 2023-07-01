@@ -68,7 +68,7 @@ async function submit() {
 function logout() {
     localStorage.removeItem("token")
     localStorage.removeItem("username")
-    location.assign(location.origin)
+    location.reload()
 }
 function refreshlist() {
     getapi("gettasklist").then(r => {
