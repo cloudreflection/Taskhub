@@ -39,7 +39,7 @@
 <script setup>
 import { NSpace, NLayout, NLayoutHeader, NLayoutContent, NH2, NCard, NInput, useMessage, NText, NCheckbox, NButton, NDivider } from 'naive-ui';
 import { ref } from 'vue'
-import { getapi, postapi } from '../share.js'
+import { getapi, postapi, apilock } from '../share.js'
 import Tasks from './Tasks.vue'
 const username = ref(localStorage.getItem("username"))
 const task = ref("")
@@ -54,7 +54,13 @@ async function submit() {
         message.warning("请输入标题/内容")
         return
     }
+    if (apilock.value) {
+        message.error("请等待请求处理完成")
+        return
+    }
+    apilock.value = true
     const r = await postapi("newtask", { "title": title.value, "content": task.value, "public": ispublic, "showid": showprofile.value })
+    apilock.value = false
     console.log({ "title": title.value, "content": task.value, "public": !isprivate.value, "showid": showprofile.value })
     if (r === true) {
         message.success("提交成功")
@@ -63,7 +69,7 @@ async function submit() {
     } else {
         message.error("提交失败")
     }
-    refreshlist()
+    location.reload()
 }
 function logout() {
     localStorage.removeItem("token")

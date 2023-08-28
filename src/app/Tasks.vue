@@ -55,7 +55,7 @@
 import { NCard, NText, NButton, NSpace, NInput, NCheckbox, NList, NEmpty, useMessage } from 'naive-ui'
 import { ref, defineProps, toRaw } from 'vue'
 import Comments from './Comments.vue'
-import { getapi, postapi } from '../share'
+import { getapi, postapi, apilock } from '../share'
 const q = defineProps(['q'])
 const p = toRaw(q.q)
 const newcomment = ref("")
@@ -85,7 +85,13 @@ async function makecomment() {
         message.warning("请填写评论")
         return
     }
+    if (apilock.value) {
+        message.error("请等待请求处理完成")
+        return
+    }
+    apilock.value = true
     const req = await postapi("newcomment", { "taskid": p[0], "content": newcomment.value, "isrec": taskrecord.value })
+    apilock.value = false
     if (req === true) {
         message.success("提交成功")
         newcomment.value = ""
